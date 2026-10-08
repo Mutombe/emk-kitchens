@@ -1,0 +1,4 @@
+# Original downloads and unused photos: kept locally, not part of the site
+_source/
+.DS_Store
+Thumbs.db
