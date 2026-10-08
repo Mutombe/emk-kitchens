@@ -8,11 +8,11 @@
   <meta name="theme-color" content="#1f1510">
   <meta property="og:title" content="EMK Kitchens | Your dream interiors, fitted">
   <meta property="og:description" content="Fitted kitchens, bedrooms, bathrooms and BICs, designed, made and installed by our own team in Harare.">
-  <meta property="og:image" content="assets/img/hero-espresso-kitchen.jpg">
+  <meta property="og:image" content="assets/img/hero/espresso-kitchen.jpg">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/plus-jakarta-sans-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/caveat-subset.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/img/hero-espresso-kitchen.jpg">
+  <link rel="preload" as="image" href="assets/img/hero/espresso-kitchen.jpg">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -69,6 +69,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <a href="#contact" class="btn btn--ghost nav__cta">Book a consult</a>
+    <a href="#projects" class="btn btn--ghost nav__projects">Projects</a>
     <button class="nav__burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span></button>
   </div>
   <div class="drawer" id="drawer" hidden>
@@ -82,11 +83,13 @@
 <!-- ============ HERO ============ -->
 <section class="hero" aria-label="Introduction">
   <div class="hero__frame">
-    <div class="hero__media" data-parallax>
-      <img src="assets/img/hero-espresso-kitchen.jpg" alt="Espresso-stained fitted kitchen with brushed brass handles, diamond mosaic splashback and a white quartz worktop" fetchpriority="high">
+    <div class="hero__media" data-parallax aria-roledescription="carousel" aria-label="Interiors we fit">
+      <img class="hero__slide is-active" src="assets/img/hero/espresso-kitchen.jpg" alt="Espresso-stained fitted kitchen with brushed brass handles, diamond mosaic splashback and a white quartz worktop" fetchpriority="high" data-label="Espresso kitchen" style="--pos:38% 55%">
+      <img class="hero__slide" src="assets/img/hero/walnut-fluted-island.jpg" alt="Walnut-panelled kitchen with a fluted charcoal island, brass bar stool and a glass-front larder" loading="lazy" data-label="Walnut &amp; fluted island" style="--pos:40% 62%">
+      <img class="hero__slide" src="assets/img/hero/panelled-bedroom.jpg" alt="Bedroom with a dark timber-panelled wall, matching bedside units and an upholstered bench" loading="lazy" data-label="Panelled bedroom" style="--pos:30% 50%">
+      <img class="hero__slide" src="assets/img/hero/petrol-blue-kitchen.jpg" alt="Petrol blue and charcoal kitchen with a marble-look waterfall island and oak floor" loading="lazy" data-label="Petrol blue kitchen" style="--pos:45% 50%">
     </div>
     <div class="hero__shade" aria-hidden="true"></div>
-    <div class="hero__leaf" aria-hidden="true"></div>
 
     <div class="hero__stage">
       <div class="hero__copy">
@@ -101,9 +104,18 @@
     </div>
 
     <div class="hero__base">
-      <div class="hero__status reveal" id="status" aria-live="polite">
-        <span class="hero__status-dot"></span>
-        <span><strong id="status-title">Showroom</strong><small id="status-sub">275 Herbert Chitepo Ave</small></span>
+      <div class="hero__bar">
+        <div class="hero__status reveal" id="status" aria-live="polite">
+          <span class="hero__status-dot"></span>
+          <span><strong id="status-title">Showroom</strong><small><span id="status-sub">275 Herbert Chitepo Ave</span><span class="hero__addr" hidden> · Herbert Chitepo Ave</span></small></span>
+        </div>
+        <div class="hero__dots reveal" role="group" aria-label="Choose a photo">
+          <span class="hero__slide-label" aria-live="polite">Espresso kitchen</span>
+          <button class="hero__dot is-active" aria-label="Photo 1" aria-current="true"><i></i></button>
+          <button class="hero__dot" aria-label="Photo 2"><i></i></button>
+          <button class="hero__dot" aria-label="Photo 3"><i></i></button>
+          <button class="hero__dot" aria-label="Photo 4"><i></i></button>
+        </div>
       </div>
       <div class="hero__cards">
         <article class="hcard reveal">

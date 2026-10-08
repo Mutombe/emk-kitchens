@@ -55,7 +55,7 @@
     const open = today && mins >= today[0] && mins < today[1];
     const fmt = (m) => `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
     let sub;
-    if (open) sub = `Until ${fmt(today[1])} today · Herbert Chitepo Ave`;
+    if (open) sub = `Until ${fmt(today[1])} today`;
     else if (today && mins < today[0]) sub = `Opens ${fmt(today[0])} today`;
     else {
       let d = (day + 1) % 7; while (!hours[d]) d = (d + 1) % 7;
@@ -65,6 +65,7 @@
     status.classList.toggle('is-open', !!open);
     $('#status-title').textContent = open ? 'Showroom open' : 'Showroom closed';
     $('#status-sub').textContent = sub;
+    $('.hero__addr').hidden = !open;
   };
   try { updateStatus(); setInterval(updateStatus, 60000); } catch (_) { /* keep static fallback */ }
 
@@ -113,6 +114,35 @@
     });
     obs.observe(el);
   });
+
+  /* ---------- Hero carousel ---------- */
+  const slides = $$('.hero__slide');
+  const dots = $$('.hero__dot');
+  const dotsWrap = $('.hero__dots');
+  const slideLabel = $('.hero__slide-label');
+  const SLIDE_MS = 7000;
+  let current = 0;
+  let slideTimer = null;
+  doc.style.setProperty('--slide-ms', `${SLIDE_MS}ms`);
+  const goTo = (i) => {
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('is-active', k === current));
+    dots.forEach((d, k) => {
+      d.classList.toggle('is-active', k === current);
+      d.classList.toggle('is-done', k < current);
+      if (k === current) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+    });
+    slideLabel.textContent = slides[current].dataset.label;
+  };
+  const autoplay = () => {
+    clearInterval(slideTimer);
+    if (reduceMotion || document.hidden) return;
+    slideTimer = setInterval(() => goTo(current + 1), SLIDE_MS);
+  };
+  dots.forEach((d, k) => d.addEventListener('click', () => { goTo(k); autoplay(); }));
+  document.addEventListener('visibilitychange', autoplay);
+  if (reduceMotion) dotsWrap.classList.add('is-paused');
+  autoplay();
 
   /* ---------- Hero parallax ---------- */
   const heroMedia = $('[data-parallax]');
